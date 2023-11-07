@@ -25,17 +25,17 @@ class GraficaProduct(ABC):
 
 #Dos fábricas concretas (una analisis y otra grafica)
 class EstadisticaFactory(AbstractFactory): #?
-    def create_product_a(self) -> AbstractProductA:
+    def create_estadistico(self) -> AbstractProductA:
         return ConcreteProductA1()
 
-    def create_product_b(self) -> AbstractProductB:
+    def create_grafica(self) -> AbstractProductB:
         return ConcreteProductB1()
 
 class GraficaFactory(AbstractFactory):
-    def create_product_a(self) -> AbstractProductA:
+    def create_estadistico(self) -> AbstractProductA:
         return ConcreteProductA2()
 
-    def create_product_b(self) -> AbstractProductB:
+    def create_grafica(self) -> AbstractProductB:
         return ConcreteProductB2()
 
 
