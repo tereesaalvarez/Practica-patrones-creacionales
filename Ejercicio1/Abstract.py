@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 
 #Interfaces abstractas
-
 class AbstractFactory(ABC):
     @abstractmethod
     def crear_analisis_estadistico(self):
@@ -39,12 +38,10 @@ class GraficaFactory(AbstractFactory):
         return ConcreteProductB2()
 
 
-
+#Productos concretos(no me hacen falta tantos como hay)
 """
-Concrete Products are created by corresponding Concrete Factories.
+Los productos concretos son creados por las correspondientes fábricas concretas.
 """
-
-
 class ConcreteProductA1(AbstractProductA):
     def useful_function_a(self) -> str:
         return "The result of the product A1."
@@ -55,6 +52,7 @@ class ConcreteProductA2(AbstractProductA):
         return "The result of the product A2."
 
 
+#Productos abstractos 
 class AbstractProductB(ABC):
     """
     Here's the the base interface of another product. All products can interact
@@ -79,38 +77,6 @@ class AbstractProductB(ABC):
         pass
 
 
-"""
-Concrete Products are created by corresponding Concrete Factories.
-"""
-
-
-class ConcreteProductB1(AbstractProductB):
-    def useful_function_b(self) -> str:
-        return "The result of the product B1."
-
-    """
-    The variant, Product B1, is only able to work correctly with the variant,
-    Product A1. Nevertheless, it accepts any instance of AbstractProductA as an
-    argument.
-    """
-
-    def another_useful_function_b(self, collaborator: AbstractProductA) -> str:
-        result = collaborator.useful_function_a()
-        return f"The result of the B1 collaborating with the ({result})"
-
-
-class ConcreteProductB2(AbstractProductB):
-    def useful_function_b(self) -> str:
-        return "The result of the product B2."
-
-    def another_useful_function_b(self, collaborator: AbstractProductA):
-        """
-        The variant, Product B2, is only able to work correctly with the
-        variant, Product A2. Nevertheless, it accepts any instance of
-        AbstractProductA as an argument.
-        """
-        result = collaborator.useful_function_a()
-        return f"The result of the B2 collaborating with the ({result})"
 
 
 def client_code(factory: AbstractFactory) -> None:

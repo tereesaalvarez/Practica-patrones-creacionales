@@ -15,3 +15,8 @@ Creo dos fábricas concretas (una análisis estadístico y otra gráficos). Cada
 
 -Producto a: crear_analisis
 -Producto b: crear_grafico
+
+Esto devuelve los productos concretos que creo ahora
+
+### Cuarto
+Crear los productos concretos.
