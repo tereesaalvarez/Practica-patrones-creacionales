@@ -17,11 +17,11 @@ class EstadisticaFactory(AbstractFactory): #?
         return MediaModaMediana()
 
     def crear_graficas(self) -> AbstractProductB:
-        return ConcreteProductB1()
+        return None
 
 class GraficaFactory(AbstractFactory):
     def crear_analisis_estadistico(self) -> AbstractProductA:
-        return ConcreteProductA2()
+        return None
 
     def crear_graficas(self) -> AbstractProductB:
         return ConcreteProductB2()
@@ -35,8 +35,14 @@ class EstadisticaProduct(ABC):
 
 #Primer producto concreto para producto abstracto
 class MediaModaMediana(EstadisticaProduct):
-    def hacer_analisis(self) -> str:
+    def __init__(self):
+        self.data = pd.read_csv('Ejercicio1/csv/activaciones1.csv')
+        self.media = self.data.media()
+        self.moda = self.data.moda()
+        self.mediana = self.data.mediana()
         
+    def hacer_analisis(self) -> str:
+
         pass
 
 
