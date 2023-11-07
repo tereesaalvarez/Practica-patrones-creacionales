@@ -30,13 +30,16 @@ class ConcreteFactory2(AbstractFactory):
     def create_product_b(self) -> AbstractProductB:
         return ConcreteProductB2()
 
-
+# Dos interfaces de producto que representan los tipos de producto que cada fabrica puede crear
 class EstadisticaProduct(ABC):
-
     @abstractmethod
-    def useful_function_a(self) -> str:
+    def hacer_analisis(self):
         pass
 
+class GraficaProduct(ABC):
+    @abstractmethod
+    def hacer_graficas(self):
+        pass
 
 """
 Concrete Products are created by corresponding Concrete Factories.
