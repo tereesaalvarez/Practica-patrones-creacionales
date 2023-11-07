@@ -10,7 +10,24 @@ class AbstractFactory(ABC):
     def crear_graficas(self):
         pass
 
-# Dos interfaces de producto que representan los tipos de producto que cada fabrica puede crear
+
+#Dos fábricas concretas (una analisis y otra grafica)
+class EstadisticaFactory(AbstractFactory): #?
+    def crear_analisis_estadistico(self) -> AbstractProductA:
+        return ConcreteProductA1()
+        
+    def crear_graficas(self) -> AbstractProductB:
+        return ConcreteProductB1()
+
+class GraficaFactory(AbstractFactory):
+    def crear_analisis_estadistico(self) -> AbstractProductA:
+        return ConcreteProductA2()
+
+    def crear_graficas(self) -> AbstractProductB:
+        return ConcreteProductB2()
+
+
+#Productos abstractos Dos interfaces de producto que representan los tipos de producto que cada fabrica puede crear
 class EstadisticaProduct(ABC):
     @abstractmethod
     def hacer_analisis(self):
@@ -22,27 +39,11 @@ class GraficaProduct(ABC):
         pass
 
 
-#Dos fábricas concretas (una analisis y otra grafica)
-class EstadisticaFactory(AbstractFactory): #?
-    def create_estadistico(self) -> AbstractProductA:
-        return ConcreteProductA1()
-
-    def create_grafica(self) -> AbstractProductB:
-        return ConcreteProductB1()
-
-class GraficaFactory(AbstractFactory):
-    def create_estadistico(self) -> AbstractProductA:
-        return ConcreteProductA2()
-
-    def create_grafica(self) -> AbstractProductB:
-        return ConcreteProductB2()
-
-
 #Productos concretos(no me hacen falta tantos como hay)
 """
 Los productos concretos son creados por las correspondientes fábricas concretas.
 """
-class ConcreteProductA1(AbstractProductA):
+class MediaModaMediana(AbstractProductA):
     def useful_function_a(self) -> str:
         return "The result of the product A1."
 
@@ -52,7 +53,7 @@ class ConcreteProductA2(AbstractProductA):
         return "The result of the product A2."
 
 
-#Productos abstractos 
+ 
 class AbstractProductB(ABC):
     """
     Here's the the base interface of another product. All products can interact
