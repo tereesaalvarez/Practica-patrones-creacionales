@@ -3,7 +3,6 @@ from abc import ABC, abstractmethod
 #Interfaces abstractas
 
 class AbstractFactory(ABC):
-
     @abstractmethod
     def crear_analisis_estadistico(self):
         pass
@@ -11,24 +10,6 @@ class AbstractFactory(ABC):
     @abstractmethod
     def crear_graficas(self):
         pass
-
-
-class EstadisticaFactory(AbstractFactory): #?
-
-    def create_product_a(self) -> AbstractProductA:
-        return ConcreteProductA1()
-
-    def create_product_b(self) -> AbstractProductB:
-        return ConcreteProductB1()
-
-
-class ConcreteFactory2(AbstractFactory):
-
-    def create_product_a(self) -> AbstractProductA:
-        return ConcreteProductA2()
-
-    def create_product_b(self) -> AbstractProductB:
-        return ConcreteProductB2()
 
 # Dos interfaces de producto que representan los tipos de producto que cada fabrica puede crear
 class EstadisticaProduct(ABC):
@@ -40,6 +21,24 @@ class GraficaProduct(ABC):
     @abstractmethod
     def hacer_graficas(self):
         pass
+
+
+#Dos fábricas concretas (una analisis y otra grafica)
+class EstadisticaFactory(AbstractFactory): #?
+    def create_product_a(self) -> AbstractProductA:
+        return ConcreteProductA1()
+
+    def create_product_b(self) -> AbstractProductB:
+        return ConcreteProductB1()
+
+class GraficaFactory(AbstractFactory):
+    def create_product_a(self) -> AbstractProductA:
+        return ConcreteProductA2()
+
+    def create_product_b(self) -> AbstractProductB:
+        return ConcreteProductB2()
+
+
 
 """
 Concrete Products are created by corresponding Concrete Factories.
