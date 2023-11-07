@@ -1,10 +1,9 @@
 from abc import ABC, abstractmethod
 
+#Interfaces abstractas
+
 class AbstractFactory(ABC):
-    """
-    declara un conjunto de métodos que devuelven
-    diferentes productos abstractos
-    """
+
     @abstractmethod
     def crear_analisis_estadistico(self):
         pass
@@ -14,13 +13,7 @@ class AbstractFactory(ABC):
         pass
 
 
-class ConcreteFactory1(AbstractFactory):
-    """
-    Concrete Factories produce a family of products that belong to a single
-    variant. The factory guarantees that resulting products are compatible. Note
-    that signatures of the Concrete Factory's methods return an abstract
-    product, while inside the method a concrete product is instantiated.
-    """
+class EstadisticaFactory(AbstractFactory): #?
 
     def create_product_a(self) -> AbstractProductA:
         return ConcreteProductA1()
@@ -30,9 +23,6 @@ class ConcreteFactory1(AbstractFactory):
 
 
 class ConcreteFactory2(AbstractFactory):
-    """
-    Each Concrete Factory has a corresponding product variant.
-    """
 
     def create_product_a(self) -> AbstractProductA:
         return ConcreteProductA2()
@@ -41,11 +31,7 @@ class ConcreteFactory2(AbstractFactory):
         return ConcreteProductB2()
 
 
-class AbstractProductA(ABC):
-    """
-    Each distinct product of a product family should have a base interface. All
-    variants of the product must implement this interface.
-    """
+class EstadisticaProduct(ABC):
 
     @abstractmethod
     def useful_function_a(self) -> str:
