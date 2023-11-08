@@ -42,13 +42,23 @@ class GraficaProduct(ABC):
 #PRODUCTOS CONCRETOS
 class AnalisisNumerico(EstadisticaProduct):
 
-    def hacer_analisis(self) -> str:
-        pass
+    def hacer_analisis(self,data) -> str:
+        columnas_numericas = data.select_dtypes(include=['int64', 'float64'])
+        resultado = {
+            'Media': columnas_numericas.mean(),
+            'Moda': columnas_numericas.mode().iloc[0],
+            'Mediana': columnas_numericas.median()
+        }
+        return resultado
 
 class AnalisisCategorico(EstadisticaProduct):
 
-    def hacer_analisis(self) -> str:
-        pass
+    def hacer_analisis(self,data) -> str:
+        columnas_categoricas = data.select_dtypes(include=['object'])
+        resultado = {
+            'Moda': columnas_categoricas.mode().iloc[0]
+        }
+        return resultado
 
 
 class GraficaNumerica(GraficaProduct):
