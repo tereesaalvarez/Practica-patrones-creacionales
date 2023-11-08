@@ -13,14 +13,14 @@ class AbstractFactory(ABC):
 
 #Dos fábricas concretas (una analisis y otra grafica)
 class EstadisticaFactory(AbstractFactory): #?
-    def crear_analisis_estadistico(self) -> AbstractProductA:
+    def crear_analisis_estadistico(self) -> EstadisticaProduct(ABC):
         return MediaModaMediana()
 
-    def crear_graficas(self) -> AbstractProductB:
+    def crear_graficas(self):
         return None
 
 class GraficaFactory(AbstractFactory):
-    def crear_analisis_estadistico(self) -> AbstractProductA:
+    def crear_analisis_estadistico(self):
         return None
 
     def crear_graficas(self) -> AbstractProductB:
@@ -33,7 +33,7 @@ class EstadisticaProduct(ABC):
     def hacer_analisis(self):
         pass
 
-#Primer producto concreto para producto abstracto
+#Primer producto concreto para primer producto abstracto
 class MediaModaMediana(EstadisticaProduct):
     def __init__(self):
         self.data = pd.read_csv('Ejercicio1/csv/activaciones1.csv')
@@ -52,15 +52,9 @@ class GraficaProduct(ABC):
     def hacer_graficas(self):
         pass
 
-
-#Productos concretos(no me hacen falta tantos como hay)
-"""
-Los productos concretos son creados por las correspondientes fábricas concretas.
-"""
-
-
-class ConcreteProductA2(AbstractProductA):
-    def useful_function_a(self) -> str:
+#Primer producto concreto para primer producto abstracto
+class RepresentacionGraficas(GraficaProduct):
+    def hacer_graficas(self) -> str:
         return "The result of the product A2."
 
 
