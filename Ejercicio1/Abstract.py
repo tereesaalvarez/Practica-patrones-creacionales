@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 #Interfaces abstractas
 class AbstractFactory(ABC):
@@ -64,7 +65,7 @@ class AnalisisCategorico(EstadisticaProduct):
 
 class GraficaNumerica(GraficaProduct):
     def hacer_graficas(self,data) -> str:
-        #Histograma para la columna Larga duracion
+        #Histograma para la columna numerica Larga duracion
         plt.figure(figsize=(10,6))
         plt.histplot(data, x='LARGA-DURACION', kde=True)
         plt.title('Histograma de Larga duracion')
@@ -76,6 +77,14 @@ class GraficaNumerica(GraficaProduct):
 
 class GraficaCategorica(GraficaProduct):
     def hacer_graficas(self,data) -> str:
+        #Grafico de barras para la columna Dias semana
+        plt.figure(figsize=(10,6))
+        sns.countplot(data=data, x='DIAS-SEMANA', order=data['DIAS-SEMANA'].value_counts().index)
+        plt.title('Grafico de barras de dias semana')
+        plt.xlabel('DIAS-SEMANA')
+        plt.ylabel('Frecuencia')
+        #Los guardo en vez de que se muestren
+        plt.savefig('Ejercicio1/imagenes/barras.png')
         return 
  
 
