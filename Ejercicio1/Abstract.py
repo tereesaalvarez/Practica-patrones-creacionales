@@ -101,15 +101,13 @@ def main(factory: AbstractFactory) -> None:
     resultado_numerico = analisis_numerico.hacer_analisis(data)
     print(resultado_numerico)
 
+    #crear fabrica de analisis categorico
+    fabrica_categorica = AnalisisCategoricoFactory()
+
+    #analisis estadistico de las columas categoricas
+    analisis_categorico = fabrica_categorica.crear_analisis_estadistico()
+    resultado_categorico = analisis_categorico.hacer_analisis(data)
+    print(resultado_categorico)
 
 if __name__ == "__main__":
-    """
-    The client code can work with any concrete factory class.
-    """
-    print("Client: Testing client code with the first factory type:")
-    client_code(EstadisticaFactory())
-
-    print("\n")
-
-    print("Client: Testing the same client code with the second factory type:")
-    client_code(GraficaFactory())
+    main()
