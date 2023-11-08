@@ -109,5 +109,12 @@ def main(factory: AbstractFactory) -> None:
     resultado_categorico = analisis_categorico.hacer_analisis(data)
     print(resultado_categorico)
 
+    #graficas
+    histograma = fabrica_numerica.crear_graficas()
+    histograma.hacer_graficas(data)
+
+    barras = fabrica_categorica.crear_graficas()
+    barras.hacer_graficas(data)
+
 if __name__ == "__main__":
     main()
