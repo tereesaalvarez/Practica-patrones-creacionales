@@ -13,14 +13,14 @@ class AbstractFactory(ABC):
 
 
 #Dos fábricas concretas (una analisis y otra grafica)
-class EstadisticaFactory(AbstractFactory): #?
+class AnalisisNumericoFactory(AbstractFactory):
     def crear_analisis_estadistico(self):
         return MediaModaMediana()
 
     def crear_graficas(self):
         return None
 
-class GraficaFactory(AbstractFactory):
+class AnalisisCategoricoFactory(AbstractFactory):
     def crear_analisis_estadistico(self):
         return None
 
@@ -44,7 +44,7 @@ class MediaModaMediana(EstadisticaProduct):
         
     def hacer_analisis(self) -> str:
         #hacer analisis de las variables del dataset
-        
+
 
 
         pass
