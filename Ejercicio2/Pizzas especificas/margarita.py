@@ -35,5 +35,5 @@ class MargaritaBuilder(PizzaBuilder):
         self._pizza.maridaje = 'cerveza rubia'
 
     def producir_extras(self) -> None:
-        self._pizza.extras = 'aceitunas negras'
+        self._pizza.extras = 'trufa'
 
