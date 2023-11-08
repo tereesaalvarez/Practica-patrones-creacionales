@@ -28,40 +28,36 @@ class AnalisisCategoricoFactory(AbstractFactory):
         return RepresentacionGraficas()
 
 
-#PRIMER PRODUCTO ABSTRACTO
+#PRODUCTOS ABSTRACTOS
 class EstadisticaProduct(ABC):
     @abstractmethod
     def hacer_analisis(self):
         pass
 
-#Primer producto concreto para primer producto abstracto
-class MediaModaMediana(EstadisticaProduct):
-    def __init__(self):
-        self.data = pd.read_csv('Ejercicio1/csv/activaciones1.csv')
-        self.media = self.data.media()
-        self.moda = self.data.moda()
-        self.mediana = self.data.mediana()
-        
-    def hacer_analisis(self) -> str:
-        #hacer analisis de las variables del dataset
-
-
-
-        pass
-
-
-#SEGUNDO PRODUCTO ABSTRACTO
 class GraficaProduct(ABC):
     @abstractmethod
     def hacer_graficas(self):
         pass
 
-#Primer producto concreto para primer producto abstracto
-class RepresentacionGraficas(GraficaProduct):
+#PRODUCTOS CONCRETOS
+class AnalisisNumerico(EstadisticaProduct):
+
+    def hacer_analisis(self) -> str:
+        pass
+
+class AnalisisCategorico(EstadisticaProduct):
+
+    def hacer_analisis(self) -> str:
+        pass
+
+
+class GraficaNumerica(GraficaProduct):
     def hacer_graficas(self) -> str:
-        return "The result of the product A2."
+        return 
 
-
+class GraficaCategorica(GraficaProduct):
+    def hacer_graficas(self) -> str:
+        return 
  
 
 
