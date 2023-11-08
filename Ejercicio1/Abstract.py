@@ -92,16 +92,14 @@ class GraficaCategorica(GraficaProduct):
 
 
 def main(factory: AbstractFactory) -> None:
-    """
-    The client code works with factories and products only through abstract
-    types: AbstractFactory and AbstractProduct. This lets you pass any factory
-    or product subclass to the client code without breaking it.
-    """
-    product_a = factory.crear_analisis_estadistico()
-    product_b = factory.crear_grafico()
+    data= pd.read_csv('Ejercicio1/csv/activaciones1.csv')
+    #crear fabrica de analisis numerico
+    fabrica_numerica = AnalisisNumericoFactory()
 
-    print(f"{product_b.useful_function_b()}")
-    print(f"{product_b.another_useful_function_b(product_a)}", end="")
+    #analisis estadistico de las columas numericas
+    analisis_numerico = fabrica_numerica.crear_analisis_estadistico()
+    resultado_numerico = analisis_numerico.hacer_analisis(data)
+    print(resultado_numerico)
 
 
 if __name__ == "__main__":
