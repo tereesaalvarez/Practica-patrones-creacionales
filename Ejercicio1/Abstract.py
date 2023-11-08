@@ -67,7 +67,7 @@ class GraficaNumerica(GraficaProduct):
     def hacer_graficas(self,data) -> str:
         #Histograma para la columna numerica Larga duracion
         plt.figure(figsize=(10,6))
-        plt.histplot(data, x='LARGA-DURACION', kde=True)
+        sns.histplot(data=data, x='LARGA-DURACION', bins=20)
         plt.title('Histograma de Larga duracion')
         plt.xlabel('LARGA-DURACIÓN')
         plt.ylabel('Frecuencia')
@@ -91,7 +91,7 @@ class GraficaCategorica(GraficaProduct):
 
 
 
-def main(factory: AbstractFactory) -> None:
+def main():
     data= pd.read_csv('Ejercicio1/csv/activaciones1.csv')
     #crear fabrica de analisis numerico
     fabrica_numerica = AnalisisNumericoFactory()
