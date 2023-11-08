@@ -15,17 +15,17 @@ class AbstractFactory(ABC):
 #Dos fábricas concretas (una analisis y otra grafica)
 class AnalisisNumericoFactory(AbstractFactory):
     def crear_analisis_estadistico(self):
-        return MediaModaMediana()
+        return AnalisisNumerico()
 
     def crear_graficas(self):
-        return None
+        return GraficaNumerica()
 
 class AnalisisCategoricoFactory(AbstractFactory):
     def crear_analisis_estadistico(self):
-        return None
+        return AnalisisCategorico()
 
     def crear_graficas(self):
-        return RepresentacionGraficas()
+        return GraficaCategorica()
 
 
 #PRODUCTOS ABSTRACTOS
