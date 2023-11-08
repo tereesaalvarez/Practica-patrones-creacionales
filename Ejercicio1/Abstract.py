@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 import pandas as pd
+import matplotlib.pyplot as plt
 
 #Interfaces abstractas
 class AbstractFactory(ABC):
@@ -62,11 +63,19 @@ class AnalisisCategorico(EstadisticaProduct):
 
 
 class GraficaNumerica(GraficaProduct):
-    def hacer_graficas(self) -> str:
+    def hacer_graficas(self,data) -> str:
+        #Histograma para la columna Larga duracion
+        plt.figure(figsize=(10,6))
+        plt.histplot(data, x='LARGA-DURACION', kde=True)
+        plt.title('Histograma de Larga duracion')
+        plt.xlabel('LARGA-DURACIÓN')
+        plt.ylabel('Frecuencia')
+        #Los guardo en vez de que se muestren
+        plt.savefig('Ejercicio1/imagenes/histograma.png')
         return 
 
 class GraficaCategorica(GraficaProduct):
-    def hacer_graficas(self) -> str:
+    def hacer_graficas(self,data) -> str:
         return 
  
 
