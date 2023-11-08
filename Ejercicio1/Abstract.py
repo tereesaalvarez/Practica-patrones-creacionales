@@ -43,6 +43,9 @@ class MediaModaMediana(EstadisticaProduct):
         self.mediana = self.data.mediana()
         
     def hacer_analisis(self) -> str:
+        #hacer analisis de las variables del dataset
+        
+
 
         pass
 
