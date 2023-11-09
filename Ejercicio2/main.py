@@ -1,6 +1,6 @@
 # main.py
-from GUIpers import PizzaPersonalizadaGUI
-from GUIpizza import PizzaExistenteGUI
+from InterfacesGUI.GUIpers import PizzaPersonalizadaGUI
+from InterfacesGUI.GUIpizza import PizzaExistenteGUI
 import tkinter as tk
 
 if __name__ == "__main__":
