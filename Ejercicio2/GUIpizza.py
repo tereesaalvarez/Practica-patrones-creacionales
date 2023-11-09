@@ -4,6 +4,7 @@ import csv
 
 from PizzaBuilder import Builder, Director
 from PizzaBuilder import barbacoa, cuatroquesos, hawaiana, jamonyqueso, margarita, personalizada, vegetariana
+from GUIpers import *
 
 class PizzaGUI:
 
@@ -24,7 +25,7 @@ class PizzaGUI:
         barbacoa_button = tk.Button(menu_window, text="Barbacoa", command=lambda: self.build_and_save_pizza(barbacoa.BarbacoaBuilder()))
         cuatro_quesos_button = tk.Button(menu_window, text="Cuatro Quesos", command=lambda: self.build_and_save_pizza(cuatroquesos.CuatroQuesosBuilder()))
         hawaiana_button = tk.Button(menu_window, text="Hawaiana", command=lambda: self.build_and_save_pizza(hawaiana.HawaianaBuilder()))
-        jamon_y_queso_button = tk.Button(menu_window, text="Jamón y Queso", command=lambda: self.build_and_save_pizza(jamonyqueso.JamonYQuesoBuilder()))
+        jamon_y_queso_button = tk.Button(menu_window, text="Jamón y Queso", command=lambda: self.build_and_save_pizza(jamonyqueso.JamonyQuesoBuilder()))
         margarita_button = tk.Button(menu_window, text="Margarita", command=lambda: self.build_and_save_pizza(margarita.MargaritaBuilder()))
         vegetariana_button = tk.Button(menu_window, text="Vegetariana", command=lambda: self.build_and_save_pizza(vegetariana.VegetarianaBuilder()))
 
@@ -38,22 +39,11 @@ class PizzaGUI:
     def customize_pizza(self):
         customization_window = tk.Toplevel(self.root)
         customization_window.title("Personalizar Pizza")
-
-        builder = personalizada.PersonalizadaBuilder()
-        director = Director.Director()
-        director.builder = builder
-
-        self.build_pizza_gui(customization_window, director)
-
-    def build_pizza_gui(self, window, director):
-        director.build_full_featured_product()
-
-        finish_button = tk.Button(window, text="Finalizar", command=lambda: self.build_and_save_pizza(director.builder))
-        finish_button.pack()
+        personalizada_gui = PersonalizadaGUI(customization_window)
 
     def build_and_save_pizza(self, builder):
         builder.reset()
-        director = Director.Director()
+        director = Director()
         director.builder = builder
         director.build_full_featured_product()
 
@@ -67,6 +57,7 @@ class PizzaGUI:
             writer = csv.writer(file)
             writer.writerow(pizza_parts)
             messagebox.showinfo("Éxito", "Pizza guardada en pizzas.csv")
+
 
 
 if __name__ == "__main__":
