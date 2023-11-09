@@ -49,7 +49,7 @@ Los resultados del análisis estadístico y las gráficas se imprimen en la cons
 Este programa es un simulador de pizzería que utiliza el patrón de diseño Builder para facilitar la creación y selección de pizzas personalizadas. Además, proporciona la opción de elegir entre diferentes pizzas predefinidas. La aplicación ha sido diseñada para mantener una estructura modular y escalable, destacando la implementación del patrón de diseño Builder para la construcción flexible de pizzas.
 
 #### Estructura del Código
-La organización del código sigue las mejores prácticas de desarrollo, con una estructura clara y modular:
+La organización del código tiene una estructura clara y es de la siguiente manera:
 
 - Ejercicio2/
   - PizzaBuilder/
