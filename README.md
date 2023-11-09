@@ -85,9 +85,10 @@ La organización del código tiene una estructura clara y es de la siguiente man
     - vegetariana_builder.py: Builder para la pizza Vegetariana.
     - personalizada_builder.py: Builder para pizzas personalizadas utilizando el patrón Builder.
     - director.py: Director que orquesta la construcción de pizzas utilizando el patrón Builder.
-  - barbacoa.py, cuatro_quesos.py, ... : Clases que representan los distintos tipos de pizzas.
-  - GUIpers.py: Interfaz gráfica para que los usuarios creen pizzas personalizadas.
-  - GUIpizza.py: Interfaz gráfica para seleccionar pizzas existentes.
+  - CSV/
+  - InterfacesGUI/
+    - GUIpers.py: Interfaz gráfica para que los usuarios creen pizzas personalizadas.
+    - GUIpizza.py: Interfaz gráfica para seleccionar pizzas existentes.
   - main.py: Punto de entrada principal que inicia la aplicación.
 
 #### Ejecución del Programa
