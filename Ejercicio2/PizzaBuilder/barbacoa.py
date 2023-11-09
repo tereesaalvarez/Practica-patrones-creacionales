@@ -1,5 +1,5 @@
 from Builder import *
-from Pizza import *
+from Pizza import Pizza
 
 class BarbacoaBuilder(PizzaBuilder):
 

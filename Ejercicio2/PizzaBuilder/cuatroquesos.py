@@ -1,5 +1,5 @@
 from Builder import *
-from Ejercicio2.pizza import *
+from Pizza import *
 
 class CuatroQuesosBuilder(PizzaBuilder):
 
