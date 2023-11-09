@@ -1,120 +1,91 @@
+# GUIpers.py
 import tkinter as tk
 from tkinter import messagebox
+from PizzaBuilder.personalizada import PersonalizadaBuilder
+from PizzaBuilder.Director import Director
 import csv
 
-from PizzaBuilder import Builder, Director
-from PizzaBuilder import barbacoa, cuatroquesos, hawaiana, jamonyqueso, margarita, personalizada, vegetariana
-
-
-class PersonalizadaGUI:
+class PizzaPersonalizadaGUI:
 
     def __init__(self, root):
         self.root = root
-        self.root.title("Personalizar Pizza")
+        self.root.title("Pizza Personalizada")
 
-        self.builder = personalizada.PersonalizadaBuilder()
+        self.builder = PersonalizadaBuilder()
         self.director = Director()
         self.director.builder = self.builder
 
-        self.create_masa_section()
-        self.create_salsa_section()
-        self.create_ingredientes_section()
-        self.create_coccion_section()
-        self.create_presentacion_section()
-        self.create_maridaje_section()
-        self.create_extras_section()
+        self.create_widgets()
 
-        finish_button = tk.Button(root, text="Finalizar", command=self.finalize_pizza)
-        finish_button.pack()
+    def create_widgets(self):
+        # Masa
+        tk.Label(self.root, text="Masa:").pack()
+        self.masa_entry = tk.Entry(self.root)
+        self.masa_entry.pack()
 
-    def create_masa_section(self):
-        masa_label = tk.Label(self.root, text="Selecciona el tipo de masa:")
-        masa_label.pack()
+        # Salsa
+        tk.Label(self.root, text="Salsa:").pack()
+        self.salsa_entry = tk.Entry(self.root)
+        self.salsa_entry.pack()
 
-        self.masa_var = tk.StringVar()
-        masa_options = ["fina", "normal, gruesa"]
-        masa_menu = tk.OptionMenu(self.root, self.masa_var, *masa_options)
-        masa_menu.pack()
+        # Ingredientes
+        tk.Label(self.root, text="Ingredientes (separados por comas):").pack()
+        self.ingredientes_entry = tk.Entry(self.root)
+        self.ingredientes_entry.pack()
 
-    def create_salsa_section(self):
-        salsa_label = tk.Label(self.root, text="Selecciona el tipo de salsa:")
-        salsa_label.pack()
+        # Coccion
+        tk.Label(self.root, text="Coccion:").pack()
+        self.coccion_entry = tk.Entry(self.root)
+        self.coccion_entry.pack()
 
-        self.salsa_var = tk.StringVar()
-        salsa_options = ["tomate", "barbacoa"]
-        salsa_menu = tk.OptionMenu(self.root, self.salsa_var, *salsa_options)
-        salsa_menu.pack()
+        # Presentacion
+        tk.Label(self.root, text="Presentacion:").pack()
+        self.presentacion_entry = tk.Entry(self.root)
+        self.presentacion_entry.pack()
 
-    def create_ingredientes_section(self):
-        ingredientes_label = tk.Label(self.root, text="Selecciona los ingredientes (fin para ninguno):")
-        ingredientes_label.pack()
+        # Maridaje
+        tk.Label(self.root, text="Maridaje:").pack()
+        self.maridaje_entry = tk.Entry(self.root)
+        self.maridaje_entry.pack()
 
-        self.ingredientes_text = tk.Entry(self.root)
-        self.ingredientes_text.pack()
+        # Extras
+        tk.Label(self.root, text="Extras (separados por comas):").pack()
+        self.extras_entry = tk.Entry(self.root)
+        self.extras_entry.pack()
 
-    def create_coccion_section(self):
-        coccion_label = tk.Label(self.root, text="Selecciona el tipo de cocción:")
-        coccion_label.pack()
+        # Botón para crear la pizza personalizada
+        tk.Button(self.root, text="Crear Pizza Personalizada", command=self.crear_pizza_personalizada).pack()
 
-        self.coccion_var = tk.StringVar()
-        coccion_options = ["horno tradicional", "horno de leña", "horno de piedra"]
-        coccion_menu = tk.OptionMenu(self.root, self.coccion_var, *coccion_options)
-        coccion_menu.pack()
+    def crear_pizza_personalizada(self):
+        masa = self.masa_entry.get()
+        salsa = self.salsa_entry.get()
+        ingredientes = self.ingredientes_entry.get().split(',')
+        coccion = self.coccion_entry.get()
+        presentacion = self.presentacion_entry.get()
+        maridaje = self.maridaje_entry.get()
+        extras = self.extras_entry.get().split()
 
-    def create_presentacion_section(self):
-        presentacion_label = tk.Label(self.root, text="Selecciona el tipo de presentación:")
-        presentacion_label.pack()
-
-        self.presentacion_var = tk.StringVar()
-        presentacion_options = ["pizza circular", "pizza rectangular"]
-        presentacion_menu = tk.OptionMenu(self.root, self.presentacion_var, *presentacion_options)
-        presentacion_menu.pack()
-
-    def create_maridaje_section(self):
-        maridaje_label = tk.Label(self.root, text="Selecciona el tipo de maridaje:")
-        maridaje_label.pack()
-
-        self.maridaje_var = tk.StringVar()
-        maridaje_options = ["cerveza rubia", "vino blanco", "refresco de cola", "vino tinto"]
-        maridaje_menu = tk.OptionMenu(self.root, self.maridaje_var, *maridaje_options)
-        maridaje_menu.pack()
-
-    def create_extras_section(self):
-        extras_label = tk.Label(self.root, text="Selecciona los extras (fin para ninguno):")
-        extras_label.pack()
-
-        self.extras_text = tk.Entry(self.root)
-        self.extras_text.pack()
-
-    def finalize_pizza(self):
-        self.builder.producir_masa(self.masa_var.get())
-        self.builder.producir_salsa(self.salsa_var.get())
-
-        ingredientes_input = self.ingredientes_text.get()
-        ingredientes = ingredientes_input.split(", ")
-        for ingrediente in ingredientes:
-            self.builder.producir_ingredientes(ingrediente)
-
-        self.builder.producir_coccion(self.coccion_var.get())
-        self.builder.producir_presentacion(self.presentacion_var.get())
-        self.builder.producir_maridaje(self.maridaje_var.get())
-
-        extras_input = self.extras_text.get()
-        extras = extras_input.split(", ")
-        for extra in extras:
-            self.builder.producir_extras(extra)
-
-        self.builder.reset()
-        self.director.builder = self.builder
         self.director.build_full_featured_product()
+        self.builder.producir_masa(masa)
+        self.builder.producir_salsa(salsa)
+        self.builder.producir_ingredientes(ingredientes)
+        self.builder.producir_coccion(coccion)
+        self.builder.producir_presentacion(presentacion)
+        self.builder.producir_maridaje(maridaje)
+        self.builder.producir_extras(extras)
 
-        pizza = self.builder.pizza
-        pizza.list_parts()
+        pizza_personalizada = self.builder.pizza
+        pizza_personalizada.list_parts()
 
-        self.save_to_csv(pizza.parts)
-
-    def save_to_csv(self, pizza_parts):
-        with open('pizzas.csv', mode='a', newline='') as file:
+        # Guardar la pizza personalizada en un CSV (puedes ajustar la ruta)
+        with open('Ejercicio2/pizzas_personalizadas.csv', mode='a', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(pizza_parts)
-            messagebox.showinfo("Éxito", "Pizza guardada en pizzas.csv")
+            writer.writerow(pizza_personalizada.parts)
+
+        messagebox.showinfo("Pizza Personalizada", "Pizza personalizada creada y guardada en pizzas_personalizadas.csv")
+
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = PizzaPersonalizadaGUI(root)
+    root.mainloop()
