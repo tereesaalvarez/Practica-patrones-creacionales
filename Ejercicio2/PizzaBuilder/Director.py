@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Any
-from Builder import PizzaBuilder
+from PizzaBuilder import Builder
 from abc import ABC, abstractmethod
 
 class Director:
@@ -9,11 +9,11 @@ class Director:
         self._builder = None
 
     @property
-    def builder(self) -> PizzaBuilder:
+    def builder(self) -> Builder.PizzaBuilder:
         return self._builder
 
     @builder.setter
-    def builder(self, builder: PizzaBuilder) -> None:
+    def builder(self, builder: Builder.PizzaBuilder) -> None:
         self._builder = builder
 
     def build_full_featured_product(self) -> None:

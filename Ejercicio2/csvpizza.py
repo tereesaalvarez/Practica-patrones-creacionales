@@ -1,61 +1,75 @@
-
+import tkinter as tk
+from tkinter import messagebox
 import csv
 
-class CsvPizza:
-    def __init__(self, filename):
-        self.filename = filename
-        self.fieldnames = ['pizza', 'masa', 'salsa', 'ingredientes', 'coccion', 'presentacion', 'maridaje', 'extras']
-        with open(self.filename, 'w', newline='') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=self.fieldnames)
-            writer.writeheader()
+from PizzaBuilder import Builder, Director
+from PizzaBuilder import barbacoa, cuatroquesos, hawaiana, jamonyqueso, margarita, personalizada, vegetariana
 
-    def añadir_pizza(self, pizza, masa, salsa, ingredientes, coccion, presentacion, maridaje, extras):
-        with open(self.filename, 'a', newline='') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=self.fieldnames)
-            writer.writerow({'Pizza': pizza, 'Masa': masa, 'Salsa': salsa, 'Ingredientes': ingredientes, 'Cocción': coccion, 'Presentación': presentacion, 'Maridaje': maridaje, 'Extras': extras})
+class PizzaGUI:
 
-from csv import*
-import tkinter as tk
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Pizza Builder")
 
+        self.menu_button = tk.Button(root, text="Seleccionar Pizza del Menú", command=self.select_menu_pizza)
+        self.custom_button = tk.Button(root, text="Personalizar Pizza", command=self.customize_pizza)
 
-def crear_interfaz():
-    # Crear la ventana principal
-    ventana = tk.Tk()
-    ventana.title("Pizzería")
+        self.menu_button.pack()
+        self.custom_button.pack()
 
-    # Crear el menú desplegable de pizzas predefinidas
-    opciones_pizzas = ["Margarita", "Pepperoni", "Hawaiana"]
-    pizza_seleccionada = tk.StringVar(ventana)
-    pizza_seleccionada.set(opciones_pizzas[0])
-    pizza_menu = tk.OptionMenu(ventana, pizza_seleccionada, *opciones_pizzas)
-    pizza_menu.pack()
+    def select_menu_pizza(self):
+        menu_window = tk.Toplevel(self.root)
+        menu_window.title("Menú de Pizzas")
 
-    # Crear la sección para crear una pizza personalizada
-    crear_pizza_label = tk.Label(ventana, text="Crear tu propia pizza")
-    crear_pizza_label.pack()
+        barbacoa_button = tk.Button(menu_window, text="Barbacoa", command=lambda: self.build_and_save_pizza(barbacoa.BarbacoaBuilder()))
+        cuatro_quesos_button = tk.Button(menu_window, text="Cuatro Quesos", command=lambda: self.build_and_save_pizza(cuatroquesos.CuatroQuesosBuilder()))
+        hawaiana_button = tk.Button(menu_window, text="Hawaiana", command=lambda: self.build_and_save_pizza(hawaiana.HawaianaBuilder()))
+        jamon_y_queso_button = tk.Button(menu_window, text="Jamón y Queso", command=lambda: self.build_and_save_pizza(jamonyqueso.JamonYQuesoBuilder()))
+        margarita_button = tk.Button(menu_window, text="Margarita", command=lambda: self.build_and_save_pizza(margarita.MargaritaBuilder()))
+        vegetariana_button = tk.Button(menu_window, text="Vegetariana", command=lambda: self.build_and_save_pizza(vegetariana.VegetarianaBuilder()))
 
-    nombre_label = tk.Label(ventana, text="Nombre:")
-    nombre_label.pack()
-    nombre_entry = tk.Entry(ventana)
-    nombre_entry.pack()
+        barbacoa_button.pack()
+        cuatro_quesos_button.pack()
+        hawaiana_button.pack()
+        jamon_y_queso_button.pack()
+        margarita_button.pack()
+        vegetariana_button.pack()
 
-    ingredientes_label = tk.Label(ventana, text="Ingredientes:")
-    ingredientes_label.pack()
-    ingredientes_entry = tk.Entry(ventana)
-    ingredientes_entry.pack()
+    def customize_pizza(self):
+        customization_window = tk.Toplevel(self.root)
+        customization_window.title("Personalizar Pizza")
 
-    precio_label = tk.Label(ventana, text="Precio:")
-    precio_label.pack()
-    precio_entry = tk.Entry(ventana)
-    precio_entry.pack()
+        builder = personalizada.PersonalizadaBuilder()
+        director = Director.Director()
+        director.builder = builder
 
-    guardar_button = tk.Button(ventana, text="Guardar pizza", command=CsvPizza.añadir_pizza)
-    guardar_button.pack()
+        self.build_pizza_gui(customization_window, director)
 
-    # Iniciar el bucle de eventos de la ventana
-    ventana.mainloop()
+    def build_pizza_gui(self, window, director):
+        director.build_full_featured_product()
+
+        finish_button = tk.Button(window, text="Finalizar", command=lambda: self.build_and_save_pizza(director.builder))
+        finish_button.pack()
+
+    def build_and_save_pizza(self, builder):
+        builder.reset()
+        director = Director.Director()
+        director.builder = builder
+        director.build_full_featured_product()
+
+        pizza = builder.pizza
+        pizza.list_parts()
+
+        self.save_to_csv(pizza.parts)
+
+    def save_to_csv(self, pizza_parts):
+        with open('pizzas.csv', mode='a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(pizza_parts)
+            messagebox.showinfo("Éxito", "Pizza guardada en pizzas.csv")
+
 
 if __name__ == "__main__":
-    crear_interfaz()
-import tkinter as tk
-import csv
+    root = tk.Tk()
+    app = PizzaGUI(root)
+    root.mainloop()

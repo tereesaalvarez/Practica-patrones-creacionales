@@ -1,9 +1,9 @@
 from __future__ import annotations
 from typing import Any
-from Builder import PizzaBuilder
+from PizzaBuilder import Builder
 from abc import ABC, abstractmethod
 
-class MargaritaBuilder(PizzaBuilder):
+class MargaritaBuilder(Builder.PizzaBuilder):
 
     def __init__(self) -> None:
         self.reset()
