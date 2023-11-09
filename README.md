@@ -1,5 +1,7 @@
 # Practica patrones creacionales
 
+El link del repositorio es el siguiente: https://github.com/tereesaalvarez/Practica-patrones-creacionales.git
+
 ## Ejercicio 1
 
 Desarrollar un programa en Python que haga uso del patrón de diseño Abstract Factory para modularizar y estandarizar el análisis de datos.
