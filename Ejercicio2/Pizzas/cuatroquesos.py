@@ -1,4 +1,4 @@
-from Ejercicio2.prueba import *
+from Builder import *
 from Ejercicio2.pizza import *
 
 class CuatroQuesosBuilder(PizzaBuilder):
