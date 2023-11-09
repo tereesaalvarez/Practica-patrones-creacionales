@@ -1,9 +1,10 @@
 
-from Ejercicio2.Pizzas import margarita
+from Ejercicio2.Pizzas.margarita import *
+from Ejercicio2.director import *
 
-def crear_margarita():
-    director = Director()
-    director.builder = MargaritaBuilder()
-    director.build_full_featured_product()
-    pizza = director.builder.pizza
-    print(pizza.listar_caracteristicas())
+#un main que contenga una interfaz de tkinter para pedir las pizzas y guardarlas en un csv
+
+
+
+
+
