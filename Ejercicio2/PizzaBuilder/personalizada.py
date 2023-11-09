@@ -24,25 +24,40 @@ class PersonalizadaBuilder(PizzaBuilder):
 
     def producir_masa(self) -> None:
         masa = input("Elige el tipo de masa (fina, normal, gruesa)")
-        self._pizza.masa = 'masa fina'
+        self._pizza.add(f'Masa: {masa}')
 
     def producir_salsa(self) -> None:
-        self._pizza.salsa = 'salsa de tomate'
+        salsa = input('Elige la salsa (tomate, barbacoa)')
+        self._pizza.add(f'Salsa: {salsa}')
 
     def producir_ingredientes(self) -> None:
-        self._pizza.ingredientes = 'tomate, champiñones, pimientos, cebolla, aceitunas negras'
+        while True:
+            ingrediente = input('Elige un ingrediente (jamón, queso, pollo, cebolla, maíz, albahaca, trufa, mozzarella, albahaca, queso azul, queso brie, queso de cabra, queso mozzarella) fin para ninguno')
+            if ingrediente == 'fin':
+                break
+            else:
+                self._pizza.add(f'Ingrediente: {ingrediente}')
 
     def producir_coccion(self) -> None:
-        self._pizza.coccion = 'horno tradicional'
+        coccion = input('Elige el tipo de cocción (horno tradicional, horno de leña, horno de piedra)')
+        self._pizza.add(f'Cocción: {coccion}') 
 
     def producir_presentacion(self) -> None:
-        self._pizza.presentacion = 'pizza circular'
+        presentacion = input('Elige la presentación (pizza circular, pizza rectangular)')
+        self._pizza.add(f'Presentación: {presentacion}')
 
     def producir_maridaje(self) -> None:
-        self._pizza.maridaje = 'vino blanco o refresco'
-
+        maridaje = input('Elige el maridaje (cerveza rubia, vino blanco, refresco de cola, vino tinto)')
+        self._pizza.add(f'Maridaje: {maridaje}')
+        
     def producir_extras(self) -> None:
-        self._pizza.extras = 'albahaca fresca y queso parmesano'
+        while True:
+            extra = input('Elige un extra (aceitunas negras, salsa barbacoa adicional, nuez picada) fin para ninguno')
+            if extra == 'fin':
+                break
+            else:
+                self._pizza.add(f'Extra: {extra}')
+        
 
 class Personalizada():
 
@@ -53,4 +68,4 @@ class Personalizada():
         self.parts.append(part)
 
     def list_parts(self) -> None:
-        print(f"Product parts: {', '.join(self.parts)}", end="")
+        print(f"Pizza parts: {', '.join(self.parts)}", end="")
