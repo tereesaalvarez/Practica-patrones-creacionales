@@ -1,4 +1,4 @@
-# Practica-patrones-creacionales
+# Practica patrones creacionales
 
 ## Ejercicio 1
 
@@ -26,3 +26,5 @@ Esto devuelve los productos concretos que creo ahora
 
 ### Cuarto
 Crear los productos concretos.
+
+# Ejercicio 2
