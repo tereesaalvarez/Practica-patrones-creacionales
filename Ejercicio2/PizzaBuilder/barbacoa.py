@@ -19,25 +19,27 @@ class BarbacoaBuilder(PizzaBuilder):
         return pizza
 
     def producir_masa(self) -> None:
-        self._pizza.masa = 'masa gruesa'
+        self._pizza.add('masa gruesa')
 
     def producir_salsa(self) -> None:
-        self._pizza.salsa = 'salsa barbacoa'
+        self._pizza.add('salsa barbacoa')
 
     def producir_ingredientes(self) -> None:
-        self._pizza.ingredientes = 'pollo, cebolla, maíz'
+        self._pizza.add('pollo')
+        self._pizza.add('cebolla')
+        self._pizza.add('maíz')
 
     def producir_coccion(self) -> None:
-        self._pizza.coccion = 'horno de leña'
+        self._pizza.add('horno de leña')
 
     def producir_presentacion(self) -> None:
-        self._pizza.presentacion = 'pizza rectangular'
+        self._pizza.add('pizza rectangular')
 
     def producir_maridaje(self) -> None:
-        self._pizza.maridaje = 'refresco de cola'
+        self._pizza.add('refresco de cola')
 
     def producir_extras(self) -> None:
-        self._pizza.extras = 'salsa barbacoa adicional'
+        self._pizza.add('salsa barbacoa adicional')
 
 
 class Barbacoa():
@@ -49,4 +51,4 @@ class Barbacoa():
         self.parts.append(part)
 
     def list_parts(self) -> None:
-        print(f"Product parts: {', '.join(self.parts)}", end="")
+        print(f"Pizza parts: {', '.join(self.parts)}", end="")

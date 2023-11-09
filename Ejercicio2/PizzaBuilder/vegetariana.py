@@ -18,35 +18,32 @@ class VegetarianaBuilder(PizzaBuilder):
         return pizza
 
     def producir_masa(self) -> None:
-        self._pizza.masa = 'masa fina'
+        self._pizza.add('masa fina')
 
     def producir_salsa(self) -> None:
-        self._pizza.salsa = 'salsa de tomate'
+        self._pizza.add('salsa de tomate')
 
     def producir_ingredientes(self) -> None:
-        self._pizza.ingredientes = 'tomate, champiñones, pimientos, cebolla, aceitunas negras'
+        self._pizza.add('tomate')
+        self._pizza.add('pimientos')
+        self._pizza.add('cebolla')
+        self._pizza.add('aceitunas negras')
+        self._pizza.add('champiñones')
 
     def producir_coccion(self) -> None:
-        self._pizza.coccion = 'horno tradicional'
+        self._pizza.add('horno tradicional')
 
     def producir_presentacion(self) -> None:
-        self._pizza.presentacion = 'pizza circular'
+        self._pizza.add('pizza circular')
 
     def producir_maridaje(self) -> None:
-        self._pizza.maridaje = 'vino blanco o refresco'
+        self._pizza.add('vino blanco')
 
     def producir_extras(self) -> None:
-        self._pizza.extras = 'albahaca fresca y queso parmesano'
+        self._pizza.add('albahaca fresca')
+        self._pizza.add('queso parmesano')
 
 class Vegetariana():
-    """
-    It makes sense to use the Builder pattern only when your products are quite
-    complex and require extensive configuration.
-
-    Unlike in other creational patterns, different concrete builders can produce
-    unrelated products. In other words, results of various builders may not
-    always follow the same interface.
-    """
 
     def __init__(self) -> None:
         self.parts = []
@@ -55,4 +52,4 @@ class Vegetariana():
         self.parts.append(part)
 
     def list_parts(self) -> None:
-        print(f"Product parts: {', '.join(self.parts)}", end="")
+        print(f"Pizza parts: {', '.join(self.parts)}", end="")
