@@ -1,6 +1,7 @@
-#pizzabuilder para construir pizzas especificas
-from Ejercicio2.prueba import *
-from Ejercicio2.pizza import *
+from __future__ import annotations
+from typing import Any
+from Builder import PizzaBuilder
+from abc import ABC, abstractmethod
 
 class MargaritaBuilder(PizzaBuilder):
 
@@ -8,10 +9,10 @@ class MargaritaBuilder(PizzaBuilder):
         self.reset()
 
     def reset(self) -> None:
-        self._pizza = Pizza()
+        self._pizza = Margarita()
 
     @property
-    def pizza(self) -> Pizza:
+    def pizza(self) -> Margarita:
         pizza = self._pizza
         self.reset()
         return pizza
@@ -38,15 +39,7 @@ class MargaritaBuilder(PizzaBuilder):
         self._pizza.extras = 'trufa'
 
 
-class Product1():
-    """
-    It makes sense to use the Builder pattern only when your products are quite
-    complex and require extensive configuration.
-
-    Unlike in other creational patterns, different concrete builders can produce
-    unrelated products. In other words, results of various builders may not
-    always follow the same interface.
-    """
+class Margarita():
 
     def __init__(self) -> None:
         self.parts = []

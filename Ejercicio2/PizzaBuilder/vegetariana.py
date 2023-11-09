@@ -1,5 +1,7 @@
-from Ejercicio2.prueba import *
-from Ejercicio2.pizza import *
+from __future__ import annotations
+from typing import Any
+from Builder import PizzaBuilder
+from abc import ABC, abstractmethod
 
 class VegetarianaBuilder(PizzaBuilder):
 
@@ -7,10 +9,10 @@ class VegetarianaBuilder(PizzaBuilder):
         self.reset()
 
     def reset(self) -> None:
-        self._pizza = Pizza()
+        self._pizza = Vegetariana()
 
     @property
-    def pizza(self) -> Pizza:
+    def pizza(self) -> Vegetariana:
         pizza = self._pizza
         self.reset()
         return pizza
@@ -36,7 +38,7 @@ class VegetarianaBuilder(PizzaBuilder):
     def producir_extras(self) -> None:
         self._pizza.extras = 'albahaca fresca y queso parmesano'
 
-class Product1():
+class Vegetariana():
     """
     It makes sense to use the Builder pattern only when your products are quite
     complex and require extensive configuration.

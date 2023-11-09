@@ -1,5 +1,7 @@
-from Builder import *
-from Pizza import *
+from __future__ import annotations
+from typing import Any
+from Builder import PizzaBuilder
+from abc import ABC, abstractmethod
 
 class CuatroQuesosBuilder(PizzaBuilder):
 
@@ -7,10 +9,10 @@ class CuatroQuesosBuilder(PizzaBuilder):
         self.reset()
 
     def reset(self) -> None:
-        self._pizza = Pizza()
+        self._pizza = Cuatroquesos()
 
     @property
-    def pizza(self) -> Pizza:
+    def pizza(self) -> Cuatroquesos:
         pizza = self._pizza
         self.reset()
         return pizza
@@ -37,15 +39,8 @@ class CuatroQuesosBuilder(PizzaBuilder):
         self._pizza.extras = 'nuez picada'
 
 
-class Product1():
-    """
-    It makes sense to use the Builder pattern only when your products are quite
-    complex and require extensive configuration.
+class Cuatroquesos():
 
-    Unlike in other creational patterns, different concrete builders can produce
-    unrelated products. In other words, results of various builders may not
-    always follow the same interface.
-    """
 
     def __init__(self) -> None:
         self.parts = []
