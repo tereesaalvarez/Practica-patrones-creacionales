@@ -1,9 +1,9 @@
 from __future__ import annotations
 from typing import Any
-from PizzaBuilder import Builder
+from PizzaBuilder.Builder import PizzaBuilder
 from abc import ABC, abstractmethod
 
-class CuatroQuesosBuilder(Builder.PizzaBuilder):
+class CuatroQuesosBuilder(PizzaBuilder):
 
     def __init__(self) -> None:
         self.reset()
