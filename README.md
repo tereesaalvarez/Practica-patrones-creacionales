@@ -41,6 +41,30 @@ El código principal se encuentra en la función `main`, que se ejecuta cuando e
 Los resultados del análisis estadístico y las gráficas se imprimen en la consola y se guardan como archivos de imagen ('histograma.png' y 'barras.png'). Estos resultados proporcionan información útil sobre el conjunto de datos y permiten una fácil visualización de los patrones y distribuciones presentes en los datos.
 
 
+### Implementación del Patrón de Diseño Abstract Factory
+El uso del patrón de diseño Abstract Factory en la implementación del programa de análisis de datos ofrece diversas ventajas, proporcionando modularidad, flexibilidad y mantenibilidad al sistema. A continuación, se detallan algunas de las principales ventajas:
+
+1. **Modularidad y Estandarización**:
+    - El patrón Abstract Factory permite organizar el código en módulos y clases que representan familias de productos relacionados.
+    - Facilita la estandarización de interfaces para la creación de productos, lo que simplifica la adición de nuevas implementaciones sin afectar el código existente.
+2. **Separación de Responsabilidades**:
+    - La separación entre las fábricas abstractas y los productos abstractos permite asignar responsabilidades específicas a cada componente.
+    - Las fábricas concretas se encargan de la creación de productos concretos, y los productos concretos implementan las operaciones específicas.
+3. **Escalabilidad**:
+    - Se puede agregar fácilmente nuevas fábricas concretas y productos concretos sin modificar el código existente.
+    - Permite extender el sistema para manejar diferentes tipos de análisis estadístico y gráficos en el futuro.
+4. **Adaptabilidad a Cambios**:
+    - Facilita la adaptación a cambios en los requisitos del sistema, ya que la lógica de creación de productos se encuentra encapsulada en las fábricas concretas.
+    - Permite cambiar la familia completa de productos simplemente cambiando la fábrica concreta utilizada.
+5. **Reusabilidad del Código**:
+    - Los productos abstractos y las fábricas abstractas se pueden reutilizar en otros contextos y proyectos.
+    - La implementación de nuevas fábricas y productos puede basarse en patrones ya establecidos.
+6. **Facilita Pruebas Unitarias**:
+    - La modularidad y la separación de responsabilidades facilitan las pruebas unitarias.
+    - Permite la prueba individual de cada familia de productos y fábricas, mejorando la robustez del sistema.
+
+En resumen, la implementación del patrón de diseño Abstract Factory mejora la estructura y mantenibilidad del código al proporcionar una manera elegante y eficiente de manejar familias de productos relacionados. Además, ofrece flexibilidad para adaptarse a cambios y escalabilidad para el crecimiento del sistema a lo largo del tiempo.
+
 
 ## Ejercicio 2
 
@@ -76,4 +100,33 @@ Las pizzas creadas o seleccionadas se guardarán en archivos CSV (pizzas_persona
 #### Resultados
 Las pizzas personalizadas se guardan en pizzas_personalizadas.csv.
 Las pizzas existentes seleccionadas se guardan en pizzas_existentes.csv.
+
+#### Implementación de Builder
+
+El uso del patrón de diseño Builder en el simulador de pizzería ofrece varios beneficios en términos de flexibilidad, escalabilidad y mantenimiento del código. Aquí hay algunos de los beneficios clave:
+
+1. **Creación Flexible de Objetos Complejos:**
+    - El patrón Builder permite la construcción paso a paso de objetos complejos.
+   - En el caso del simulador de pizzería, cada tipo de pizza puede construirse de manera modular y personalizada según los ingredientes seleccionados, gracias a los builders específicos para cada tipo de pizza.
+
+3. **Separación de la Construcción y Representación:**
+   - El patrón Builder separa el proceso de construcción de un objeto de su representación final.
+   - Los builders (`barbacoa_builder.py`, `cuatro_quesos_builder.py`, etc.) se encargan de la construcción de las pizzas, mientras que la representación final de las pizzas se mantiene en las clases individuales (`barbacoa.py`, `cuatro_quesos.py`, etc.).
+
+4. **Reusabilidad de Código:**
+   - Los builders pueden reutilizarse para construir diferentes variantes de objetos.
+   - En el simulador de pizzería, puedes reutilizar los builders para crear nuevas pizzas personalizadas o predefinidas sin tener que modificar el código existente.
+
+5. **Escalabilidad:**
+   - La aplicación es escalable, ya que puedes agregar nuevos tipos de pizzas simplemente creando nuevos builders y clases de pizza, sin afectar el código existente.
+   - La estructura modular permite una fácil expansión de la funcionalidad sin necesidad de realizar cambios importantes en el código.
+
+6. **Mantenimiento Sencillo:**
+   - La separación de la construcción y representación facilita el mantenimiento del código.
+   - Si hay cambios en la lógica de construcción de pizzas, solo necesitas ajustar el builder correspondiente sin afectar otras partes del sistema.
+
+7. **Interfaz Gráfica Coherente:**
+   - La implementación del patrón Builder contribuye a una interfaz gráfica coherente y fácil de entender para la creación de pizzas personalizadas o la selección de pizzas predefinidas.
+
+En resumen, el uso del patrón Builder en el simulador de pizzería mejora la flexibilidad, mantenimiento y escalabilidad del código, proporcionando una estructura modular que facilita la creación y gestión de diferentes tipos de pizzas.
 
