@@ -1,4 +1,4 @@
-from csv import*
+from csvpizza import CsvPizza
 import tkinter as tk
 
 
