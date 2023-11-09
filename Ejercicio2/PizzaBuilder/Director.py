@@ -1,4 +1,4 @@
-from Ejercicio2.PizzaBuilder import *
+from Builder import PizzaBuilder
 
 
 class Director:
